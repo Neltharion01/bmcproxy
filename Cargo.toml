@@ -1,0 +1,18 @@
+[package]
+name = "bmcproxy"
+version = "0.1.0"
+edition = "2024"
+
+authors = ["Neltharion01"]
+license = "MIT OR Apache-2.0"
+description = "TLS 1.0 converter for outdated BMCs"
+readme = "README.md"
+repository = "https://github.com/Neltharion01/bmcproxy"
+
+[dependencies.openssl_lite]
+git = "https://github.com/Neltharion01/openssl_lite"
+features = ["tokio"]
+
+[dependencies.tokio]
+version = "1.49"
+features = ["rt-multi-thread", "io-util", "signal", "time"]
