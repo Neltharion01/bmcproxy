@@ -76,9 +76,13 @@ async fn async_main() -> io::Result<()> {
 
 async fn handle(bmcaddr: String, mut server_conn: TcpStream) -> io::Result<()> {
     let mut client_ctx = SslCtx::new()?;
+    // Forsaken horrors that no one remembers
     client_ctx.set_min_version(openssl_lite::version::TLS1_VERSION)?;
+    // Forgotten languages that nobody ever speaks
     client_ctx.set_cipher_list(c"DEFAULT:@SECLEVEL=0")?;
+    // TODO: running this will probably summon Anachronos
     client_ctx.set_options(openssl_lite::op::SSL_OP_LEGACY_SERVER_CONNECT | openssl_lite::op::SSL_OP_IGNORE_UNEXPECTED_EOF);
+    // ...I'm sorry
     client_ctx.set_verify(false);
 
     let client_conn = TcpStream::connect(bmcaddr).await?;
