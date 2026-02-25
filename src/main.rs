@@ -75,6 +75,8 @@ async fn async_main() -> io::Result<()> {
 }
 
 async fn handle(bmcaddr: String, mut server_conn: TcpStream) -> io::Result<()> {
+    server_conn.set_nodelay(true)?;
+
     let mut client_ctx = SslCtx::new()?;
     // Forsaken horrors that no one remembers
     client_ctx.set_min_version(openssl_lite::version::TLS1_VERSION)?;
