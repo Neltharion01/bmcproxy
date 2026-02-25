@@ -77,9 +77,12 @@ async fn async_main() -> io::Result<()> {
 async fn handle(bmcaddr: String, mut server_conn: TcpStream) -> io::Result<()> {
     server_conn.set_nodelay(true)?;
 
+    let mut client_ctx = SslCtx::new()?;
+    client_ctx.set_default_verify_paths()?;
+
     let client_conn = TcpStream::connect(bmcaddr).await?;
     client_conn.set_nodelay(true)?;
-    let mut client_ssl = AsyncSsl::new(&SslCtx::new()?, client_conn)?;
+    let mut client_ssl = AsyncSsl::new(&client_ctx, client_conn)?;
     client_ssl.connect().await?;
 
     tokio::io::copy_bidirectional(&mut client_ssl, &mut server_conn).await?;
