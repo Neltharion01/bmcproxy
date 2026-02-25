@@ -16,3 +16,9 @@ features = ["tokio"]
 [dependencies.tokio]
 version = "1.49"
 features = ["rt-multi-thread", "io-util", "signal", "time"]
+
+[profile.minsize]
+inherits = "release"
+strip = true
+lto = true
+opt-level = "s"
