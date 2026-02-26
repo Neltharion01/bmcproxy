@@ -78,7 +78,7 @@ async fn handle(bmcaddr: String, mut server_conn: TcpStream) -> io::Result<()> {
     server_conn.set_nodelay(true)?;
 
     let mut client_ctx = SslCtx::new()?;
-    client_ctx.set_default_verify_paths()?;
+    client_ctx.set_verify(false);
 
     let client_conn = TcpStream::connect(bmcaddr).await?;
     client_conn.set_nodelay(true)?;
