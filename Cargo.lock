@@ -28,9 +28,9 @@ dependencies = [
 
 [[package]]
 name = "libc"
-version = "0.2.180"
+version = "0.2.182"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "bcc35a38544a891a5f7c865aca548a982ccb3b8650a5b06d0fd33a10283c56fc"
+checksum = "6800badb6cb2082ffd7b6a67e6125bb39f18782f793520caee8cb8846be06112"
 
 [[package]]
 name = "mio"
@@ -46,7 +46,6 @@ dependencies = [
 [[package]]
 name = "openssl_lite"
 version = "0.1.0"
-source = "git+https://github.com/Neltharion01/openssl_lite#e17107e16b07465da903971ebc46efc19b8df7f4"
 dependencies = [
  "pin-project-lite",
  "tokio",
